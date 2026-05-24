@@ -16,7 +16,6 @@
             --hp-green: #44ff44;
             --hp-red: #ff4444;
         }
-
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--bg-color);
@@ -29,694 +28,188 @@
             padding: 20px;
             min-height: 100vh;
         }
-
-        header {
-            text-align: center;
-            padding: 20px 0;
-            border-bottom: 2px solid var(--border-gold);
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
-        }
-
-        h1 {
-            margin: 0;
-            letter-spacing: 2px;
-            color: var(--border-gold);
-            font-size: 2rem;
-            text-transform: uppercase;
-        }
-
-        .screen {
-            display: none;
-            animation: fadeIn 0.3s ease-out forwards;
-        }
-
-        .screen.active {
-            display: block;
-        }
-
-        .main-panel {
-            background: var(--panel-bg);
-            border: 2px solid var(--border-gold);
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 10px 30px var(--shadow-color);
-        }
-
-        form {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        input[type="text"] {
-            flex-grow: 1;
-            padding: 12px;
-            background: #0f0f1d;
-            border: 1px solid var(--border-gold);
-            border-radius: 4px;
-            color: #fff;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        button {
-            padding: 10px 25px;
-            background: linear-gradient(180deg, #ff6b6b 0%, #cc0000 100%);
-            border: 1px solid #990000;
-            border-radius: 4px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-            transition: transform 0.1s, box-shadow 0.1s;
-        }
-
-        button:hover {
-            box-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
-            transform: translateY(-1px);
-        }
-
-        button.secondary {
-            background: linear-gradient(180deg, #4d94ff 0%, #0044cc 100%);
-            border-color: #002266;
-        }
-
-        button.gold {
-            background: linear-gradient(180deg, #c5a059 0%, #8a6d3b 100%);
-            border-color: #5e4a28;
-            color: #1a1a2e;
-        }
-
-        .nav-actions {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        /* Encyclopedia Styles */
-        .filter-actions {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .filter-btn {
-            padding: 6px 12px;
-            font-size: 0.8rem;
-            background: #2a2a4a;
-            border: 1px solid var(--border-gold);
-            color: var(--border-gold);
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .filter-btn.active {
-            background: var(--border-gold);
-            color: #1a1a2e;
-        }
-
-        .encyclopedia-list-container {
-            max-height: 400px;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-
-        .encyclopedia-list-container::-webkit-scrollbar { width: 6px; }
-        .encyclopedia-list-container::-webkit-scrollbar-track { background: #0f0f1d; }
-        .encyclopedia-list-container::-webkit-scrollbar-thumb { background: var(--border-gold); border-radius: 3px; }
-
-        .status-badge {
-            font-size: 0.7rem;
-            padding: 2px 6px;
-            border-radius: 10px;
-            margin-left: 10px;
-            font-weight: bold;
-        }
-        .badge-defeated { background: rgba(68, 255, 68, 0.2); color: var(--hp-green); border: 1px solid var(--hp-green); }
-        .badge-active { background: rgba(255, 77, 77, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
-
-        /* Battle Screen Styles */
-        .battle-container {
-            text-align: center;
-        }
-
-        .hp-container {
-            margin: 20px 0;
-            text-align: left;
-        }
-
-        .hp-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-            color: var(--border-gold);
-        }
-
-        .hp-bar-bg {
-            background: #333;
-            height: 20px;
-            border-radius: 10px;
-            border: 1px solid var(--border-gold);
-            overflow: hidden;
-        }
-
-        .hp-bar-fill {
-            height: 100%;
-            background: var(--hp-green);
-            width: 100%;
-            transition: width 0.3s ease-out, background-color 0.3s;
-        }
-
-        .hp-bar-fill.low {
-            background: var(--hp-red);
-        }
-
-        .enemy-sprite {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 20px;
-            background: radial-gradient(circle, #ff4d4d 0%, #800000 100%);
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            border: 4px solid var(--border-gold);
-            position: relative;
-            box-shadow: 0 0 20px rgba(255, 77, 77, 0.4);
-            animation: float 2s ease-in-out infinite;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { transform: translateY(-10px) rotate(2deg); border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%; }
-        }
-
-        .enemy-eye {
-            position: absolute;
-            background: white;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            top: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .eye-left { left: 30px; }
-        .eye-right { right: 30px; }
-
-        .eye-pupil {
-            width: 12px;
-            height: 12px;
-            background: black;
-            border-radius: 50%;
-            animation: blink 4s infinite;
-        }
-
-        @keyframes blink {
-            0%, 90%, 100% { transform: scaleY(1); }
-            95% { transform: scaleY(0.1); }
-        }
-
-        .enemy-mouth {
-            position: absolute;
-            width: 40px;
-            height: 20px;
-            border-bottom: 4px solid #330000;
-            border-radius: 50%;
-            bottom: 35px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .monster-name-display {
-            font-size: 1.5rem;
-            color: var(--border-gold);
-            margin-bottom: 20px;
-        }
-
-        /* 剣のイラストボタン */
-        #attack-btn {
-            padding: 15px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            font-size: 1.2rem;
-        }
-
-        .sword-icon {
-            width: 24px;
-            height: 24px;
-            position: relative;
-            transform: rotate(45deg);
-            display: inline-block;
-        }
-
-        .sword-blade {
-            position: absolute;
-            width: 6px;
-            height: 18px;
-            background: #e0e0e0;
-            border: 1px solid #999;
-            top: 0;
-            left: 9px;
-            border-radius: 3px 3px 0 0;
-        }
-
-        .sword-hilt {
-            position: absolute;
-            width: 16px;
-            height: 4px;
-            background: #8a6d3b;
-            bottom: 4px;
-            left: 4px;
-        }
-
-        .sword-handle {
-            position: absolute;
-            width: 4px;
-            height: 8px;
-            background: #5e4a28;
-            bottom: -4px;
-            left: 10px;
-        }
-
-        /* List Styles */
-        ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
-        }
-
-        li {
-            background: linear-gradient(90deg, #2a2a4a 0%, #1a1a2e 100%);
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            border-radius: 6px;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 8px;
-        }
-
-        li.defeated {
-            opacity: 0.5;
-            filter: grayscale(1);
-        }
-
-        li::before {
-            content: '';
-            width: 30px;
-            height: 30px;
-            background: radial-gradient(circle, #4d94ff 0%, #1a1a2e 70%);
-            border-radius: 50%;
-            border: 1px solid var(--border-gold);
-            flex-shrink: 0;
-        }
-
-        .monster-info { flex-grow: 1; }
-        .monster-name { display: block; font-weight: bold; }
+        header { text-align: center; padding: 20px 0; border-bottom: 2px solid var(--border-gold); margin-bottom: 30px; text-shadow: 0 0 10px rgba(197, 160, 89, 0.5); }
+        h1 { margin: 0; letter-spacing: 2px; color: var(--border-gold); font-size: 2rem; text-transform: uppercase; }
+        .screen { display: none; animation: fadeIn 0.3s ease-out forwards; }
+        .screen.active { display: block; }
+        .main-panel { background: var(--panel-bg); border: 2px solid var(--border-gold); border-radius: 8px; padding: 20px; box-shadow: 0 10px 30px var(--shadow-color); }
+        form { display: flex; gap: 10px; margin-bottom: 20px; }
+        input[type="text"] { flex-grow: 1; padding: 12px; background: #0f0f1d; border: 1px solid var(--border-gold); border-radius: 4px; color: #fff; font-size: 1rem; outline: none; }
+        button { padding: 10px 25px; background: linear-gradient(180deg, #ff6b6b 0%, #cc0000 100%); border: 1px solid #990000; border-radius: 4px; color: white; font-weight: bold; cursor: pointer; transition: transform 0.1s; }
+        button:hover { transform: translateY(-1px); }
+        button.secondary { background: linear-gradient(180deg, #4d94ff 0%, #0044cc 100%); border-color: #002266; }
+        button.gold { background: linear-gradient(180deg, #c5a059 0%, #8a6d3b 100%); border-color: #5e4a28; color: #1a1a2e; }
+        .nav-actions { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        .filter-actions { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .filter-btn { padding: 6px 12px; font-size: 0.8rem; background: #2a2a4a; border: 1px solid var(--border-gold); color: var(--border-gold); border-radius: 4px; cursor: pointer; }
+        .filter-btn.active { background: var(--border-gold); color: #1a1a2e; }
+        .hp-bar-bg { background: #333; height: 20px; border-radius: 10px; border: 1px solid var(--border-gold); overflow: hidden; margin: 10px 0; }
+        .hp-bar-fill { height: 100%; background: var(--hp-green); width: 100%; transition: width 0.3s ease-out; }
+        .hp-bar-fill.low { background: var(--hp-red); }
+        ul { list-style: none; padding: 0; margin-top: 20px; }
+        li { background: linear-gradient(90deg, #2a2a4a 0%, #1a1a2e 100%); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 6px; padding: 10px 15px; margin-bottom: 8px; }
+        li.defeated { opacity: 0.5; filter: grayscale(1); }
+        .monster-info { display: flex; flex-direction: column; }
+        .monster-name { font-weight: bold; }
         .date { font-size: 0.75rem; color: #888; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
-        }
-
-        .shake {
-            animation: shake 0.2s ease-in-out;
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } }
+        .shake { animation: shake 0.2s ease-in-out; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>罪を償いましょう</h1>
-    </header>
-
-    <!-- 入力画面 -->
+    <header><h1>罪を償いましょう</h1></header>
     <div id="input-screen" class="screen active">
         <div class="main-panel">
-            <form id="food-form">
-                <input type="text" id="food-input" placeholder="召喚する食べ物を入力..." required>
-                <button type="submit">召喚</button>
-            </form>
-
-            <div class="nav-actions" style="gap: 10px;">
-                <button id="go-battle-btn" class="gold">討伐へ向かう</button>
-                <button id="go-encyclopedia-btn" class="secondary">図鑑を見る</button>
+            <div id="microbit-panel" style="text-align:center; margin-bottom: 16px;">
+                <span id="microbit-status">🔴 micro:bit 未接続</span>
+                <button id="microbit-connect-btn" class="secondary" style="margin-left: 12px;">micro:bit を接続</button>
             </div>
-
-            <div id="monster-list-container">
-                <h2 style="font-size: 1.2rem; color: var(--border-gold); margin-top: 30px;">出現中のモンスター</h2>
-                <ul id="monster-list"></ul>
-            </div>
+            <form id="food-form"><input type="text" id="food-input" placeholder="召喚する食べ物を入力..." required><button type="submit">召喚</button></form>
+            <div class="nav-actions"><button id="go-battle-btn" class="gold">討伐へ向かう</button><button id="go-encyclopedia-btn" class="secondary">図鑑を見る</button></div>
+            <div id="monster-list-container"><h2 style="font-size: 1.1rem; color: var(--border-gold); margin-top: 20px;">出現中のモンスター</h2><ul id="monster-list"></ul></div>
         </div>
     </div>
-
-    <!-- 討伐画面 -->
     <div id="battle-screen" class="screen">
-        <div class="main-panel battle-container">
-            <div id="enemy-display">
-                <div class="enemy-sprite" id="enemy-sprite">
-                    <div class="enemy-eye eye-left"><div class="eye-pupil"></div></div>
-                    <div class="enemy-eye eye-right"><div class="eye-pupil"></div></div>
-                    <div class="enemy-mouth"></div>
-                </div>
-                <div class="monster-name-display" id="battle-monster-name">モンスター名</div>
+        <div class="main-panel">
+            <div id="battle-monster-name" style="font-size: 1.5rem; text-align: center; margin-bottom: 20px; color: var(--border-gold);"></div>
+            <div id="enemy-sprite" style="width:120px; height:120px; background:radial-gradient(circle, #ff4d4d 0%, #800000 100%); margin:0 auto; border-radius: 50%; border: 3px solid var(--border-gold);"></div>
+            <div style="margin-top: 20px;">
+                <div style="display:flex; justify-content:space-between; font-size:0.9rem;"><span>敵のHP</span><span id="enemy-hp-text"></span></div>
+                <div class="hp-bar-bg"><div id="enemy-hp-bar" class="hp-bar-fill"></div></div>
             </div>
-
-            <div class="hp-container">
-                <div class="hp-label">
-                    <span>敵のHP</span>
-                    <span id="enemy-hp-text">50/50</span>
-                </div>
-                <div class="hp-bar-bg">
-                    <div id="enemy-hp-bar" class="hp-bar-fill" style="width: 100%;"></div>
-                </div>
-            </div>
-
-            <div class="hp-container">
-                <div class="hp-label">
-                    <span>自分のHP</span>
-                    <span id="player-hp-text">100/100</span>
-                </div>
-                <div class="hp-bar-bg">
-                    <div id="player-hp-bar" class="hp-bar-fill" style="width: 100%;"></div>
-                </div>
-            </div>
-
-            <div class="nav-actions">
-                <button id="attack-btn">
-                    <div class="sword-icon">
-                        <div class="sword-blade"></div>
-                        <div class="sword-hilt"></div>
-                        <div class="sword-handle"></div>
-                    </div>
-                    攻撃！
-                </button>
+            <div style="margin-top: 10px;">
+                <div style="display:flex; justify-content:space-between; font-size:0.9rem;"><span>自分のHP</span><span id="player-hp-text"></span></div>
+                <div class="hp-bar-bg"><div id="player-hp-bar" class="hp-bar-fill"></div></div>
             </div>
         </div>
     </div>
-
-    <!-- ゲームオーバー画面 -->
-    <div id="gameover-screen" class="screen">
-        <div class="main-panel" style="text-align: center;">
-            <h2 style="color: var(--hp-red); font-size: 2rem;">GAME OVER</h2>
-            <p>あなたは力尽きた...</p>
-            <div class="nav-actions" style="flex-direction: column; gap: 10px;">
-                <button id="retry-btn">もう一度討伐へ</button>
-                <button id="back-input-btn-go" class="secondary">入力画面に戻る</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 討伐成功画面 -->
-    <div id="victory-screen" class="screen">
-        <div class="main-panel" style="text-align: center;">
-            <h2 style="color: var(--hp-green); font-size: 2rem;">VICTORY!</h2>
-            <p>全てのモンスターを討伐しました！</p>
-            <div class="nav-actions">
-                <button id="back-input-btn-vic" class="secondary">入力画面に戻る</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 図鑑画面 -->
+    <div id="gameover-screen" class="screen"><div class="main-panel" style="text-align:center;"><h2 style="color:var(--hp-red);">GAME OVER</h2><p>あなたは力尽きた...</p><div class="nav-actions"><button id="retry-btn">もう一度討伐へ</button><button id="back-input-btn-go" class="secondary">戻る</button></div></div></div>
+    <div id="victory-screen" class="screen"><div class="main-panel" style="text-align:center;"><h2 style="color:var(--hp-green);">VICTORY!</h2><p>全てのモンスターを討伐しました！</p><div class="nav-actions"><button id="back-input-btn-vic" class="secondary">戻る</button></div></div></div>
     <div id="encyclopedia-screen" class="screen">
         <div class="main-panel">
-            <h2 style="font-size: 1.5rem; color: var(--border-gold); text-align: center; margin-bottom: 20px;">罪の記録 (図鑑)</h2>
-            
+            <h2 style="font-size: 1.5rem; text-align: center; margin-bottom: 20px; color: var(--border-gold);">罪の記録 (図鑑)</h2>
             <div class="filter-actions">
                 <button class="filter-btn active" data-filter="all">すべて</button>
                 <button class="filter-btn" data-filter="undefeated">未討伐</button>
                 <button class="filter-btn" data-filter="defeated">討伐済み</button>
             </div>
-
-            <div class="encyclopedia-list-container">
-                <ul id="encyclopedia-list"></ul>
-            </div>
-
-            <div class="nav-actions">
-                <button id="back-from-encyclopedia-btn" class="secondary">戻る</button>
-            </div>
+            <div style="max-height: 400px; overflow-y: auto;"><ul id="encyclopedia-list"></ul></div>
+            <div class="nav-actions"><button id="back-from-encyclopedia-btn" class="secondary">戻る</button></div>
         </div>
     </div>
-
     <script>
-        const STORAGE_KEY = 'tsumi_game_monsters';
-        
-        // Game State
-        let playerHP = 100;
-        let enemyHP = 50;
-        let currentMonster = null;
-        let battleInterval = null;
-        let enemyAttackCount = 0;
-        let currentFilter = 'all';
+        const STORAGE_KEY = "tsumi_game_monsters";
+        let playerHP = 100, enemyHP = 50, currentMonster = null, battleInterval = null, currentFilter = "all";
+        let microbitPort = null, microbitReader = null;
 
-        // Elements
-        const screens = document.querySelectorAll('.screen');
-        const foodForm = document.getElementById('food-form');
-        const foodInput = document.getElementById('food-input');
-        const monsterList = document.getElementById('monster-list');
-        const encyclopediaList = document.getElementById('encyclopedia-list');
-        
-        const goBattleBtn = document.getElementById('go-battle-btn');
-        const goEncyclopediaBtn = document.getElementById('go-encyclopedia-btn');
-        const backFromEncyclopediaBtn = document.getElementById('back-from-encyclopedia-btn');
-        const filterBtns = document.querySelectorAll('.filter-btn');
-
-        const attackBtn = document.getElementById('attack-btn');
-        const retryBtn = document.getElementById('retry-btn');
-        const backInputBtns = [
-            document.getElementById('back-input-btn-go'), 
-            document.getElementById('back-input-btn-vic')
-        ];
-
-        const playerHPBar = document.getElementById('player-hp-bar');
-        const playerHPText = document.getElementById('player-hp-text');
-        const enemyHPBar = document.getElementById('enemy-hp-bar');
-        const enemyHPText = document.getElementById('enemy-hp-text');
-        const battleMonsterName = document.getElementById('battle-monster-name');
-        const enemySprite = document.getElementById('enemy-sprite');
-
-        // Initialization
-        renderMonsters();
-
-        // Event Listeners
-        foodForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const foodName = foodInput.value.trim();
-            if (foodName) {
-                addMonster(foodName);
-                foodInput.value = '';
-            }
-        });
-
-        goBattleBtn.addEventListener('click', () => {
-            startBattleFlow();
-        });
-
-        goEncyclopediaBtn.addEventListener('click', () => {
-            showScreen('encyclopedia-screen');
-            renderEncyclopedia();
-        });
-
-        backFromEncyclopediaBtn.addEventListener('click', () => {
-            showScreen('input-screen');
-            renderMonsters();
-        });
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentFilter = btn.dataset.filter;
-                renderEncyclopedia();
-            });
-        });
-
-        attackBtn.addEventListener('click', () => {
-            playerAttack();
-        });
-
-        retryBtn.addEventListener('click', () => {
-            startBattleFlow();
-        });
-
-        backInputBtns.forEach(btn => btn.addEventListener('click', () => {
-            showScreen('input-screen');
-            renderMonsters();
-        }));
-
-        // Screen Logic
-        function showScreen(screenId) {
-            screens.forEach(s => s.classList.remove('active'));
-            document.getElementById(screenId).classList.add('active');
-            if (screenId !== 'battle-screen') {
-                clearInterval(battleInterval);
-            }
+        // micro:bit support check
+        if (!("serial" in navigator)) {
+            document.getElementById("microbit-status").textContent = "❌ ブラウザ非対応 (Chrome/Edge推奨)";
+            document.getElementById("microbit-connect-btn").style.display = "none";
         }
 
-        // Data Logic
-        function getMonsters() {
-            const data = localStorage.getItem(STORAGE_KEY);
-            return data ? JSON.parse(data) : [];
-        }
-
-        function saveMonsters(monsters) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(monsters));
-        }
-
-        function addMonster(food) {
-            const monsters = getMonsters();
-            const newMonster = {
-                id: Date.now(),
-                food: food,
-                defeated: false,
-                createdAt: new Date().toISOString().split('T')[0]
-            };
-            monsters.push(newMonster);
-            saveMonsters(monsters);
-            renderMonsters();
-        }
-
-        function renderMonsters() {
-            const monsters = getMonsters();
-            monsterList.innerHTML = '';
-            monsters.forEach(monster => {
-                const li = document.createElement('li');
-                if (monster.defeated) li.classList.add('defeated');
-                li.innerHTML = `
-                    <div class="monster-info">
-                        <span class="monster-name">${monster.food}</span>
-                        <span class="date">出現日: ${monster.createdAt} ${monster.defeated ? '(討伐済)' : ''}</span>
-                    </div>
-                `;
-                monsterList.appendChild(li);
-            });
-            goBattleBtn.disabled = monsters.filter(m => !m.defeated).length === 0;
-        }
-
-        function renderEncyclopedia() {
-            const monsters = getMonsters();
-            encyclopediaList.innerHTML = '';
+        async function connectMicrobit() {
+          const statusEl = document.getElementById("microbit-status");
+          const btnEl = document.getElementById("microbit-connect-btn");
+          try {
+            microbitPort = await navigator.serial.requestPort();
+            await microbitPort.open({ baudRate: 115200 });
             
-            const filtered = monsters.filter(m => {
-                if (currentFilter === 'undefeated') return !m.defeated;
-                if (currentFilter === 'defeated') return m.defeated;
-                return true;
+            const decoder = new TextDecoderStream();
+            const readableStreamClosed = microbitPort.readable.pipeTo(decoder.writable);
+            microbitReader = decoder.readable.getReader();
+            
+            statusEl.textContent = "🟢 micro:bit 接続中";
+            btnEl.textContent = "接続済み";
+            btnEl.disabled = true;
+            readMicrobitLoop();
+          } catch (err) {
+            console.error(err);
+            statusEl.textContent = "🔴 接続失敗: " + err.message.split(":")[0];
+          }
+        }
+        async function readMicrobitLoop() {
+          const statusEl = document.getElementById("microbit-status");
+          const btnEl = document.getElementById("microbit-connect-btn");
+          let buffer = "";
+          try {
+            while (true) {
+              const { value, done } = await microbitReader.read();
+              if (done) break;
+              buffer += value;
+              const lines = buffer.split("\n");
+              buffer = lines.pop();
+              for (const line of lines) {
+                if (line.trim() === "ATTACK") playerAttack();
+              }
+            }
+          } catch (err) { 
+            console.error("Read Error:", err);
+            statusEl.textContent = "🔴 切断されました";
+            btnEl.disabled = false;
+            btnEl.textContent = "micro:bit を接続";
+          }
+        }
+        function showScreen(id) {
+            document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+            document.getElementById(id).classList.add("active");
+            if (id !== "battle-screen") clearInterval(battleInterval);
+        }
+        function getMonsters() { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); }
+        function saveMonsters(m) { localStorage.setItem(STORAGE_KEY, JSON.stringify(m)); }
+        function addMonster(f) {
+            const m = getMonsters();
+            m.push({ id: Date.now(), food: f, defeated: false, createdAt: new Date().toLocaleDateString() });
+            saveMonsters(m); renderMonsters();
+        }
+        function renderMonsters() {
+            const m = getMonsters(); const list = document.getElementById("monster-list"); list.innerHTML = "";
+            m.forEach(x => {
+                const li = document.createElement("li"); if (x.defeated) li.classList.add("defeated");
+                li.innerHTML = '<div class="monster-info"><span class="monster-name">' + x.food + '</span><span class="date">出現日: ' + x.createdAt + ' ' + (x.defeated ? "(討伐済)" : "") + '</span></div>';
+                list.appendChild(li);
             });
-
-            if (filtered.length === 0) {
-                encyclopediaList.innerHTML = '<p style="text-align:center; color:#888; padding: 20px;">記録がありません</p>';
-                return;
-            }
-
-            filtered.forEach(monster => {
-                const li = document.createElement('li');
-                li.style.borderLeft = monster.defeated ? '4px solid var(--hp-green)' : '4px solid var(--accent-red)';
-                li.innerHTML = `
-                    <div class="monster-info">
-                        <div style="display: flex; align-items: center; justify-content: space-between;">
-                            <span class="monster-name">${monster.food}</span>
-                            <span class="status-badge ${monster.defeated ? 'badge-defeated' : 'badge-active'}">
-                                ${monster.defeated ? '討伐済み' : '未討伐'}
-                            </span>
-                        </div>
-                        <span class="date">登録日: ${monster.createdAt}</span>
-                    </div>
-                `;
-                encyclopediaList.appendChild(li);
+            document.getElementById("go-battle-btn").disabled = m.filter(x => !x.defeated).length === 0;
+        }
+        function renderEncyclopedia() {
+            const m = getMonsters(); const list = document.getElementById("encyclopedia-list"); list.innerHTML = "";
+            const filtered = m.filter(x => { if (currentFilter === "undefeated") return !x.defeated; if (currentFilter === "defeated") return x.defeated; return true; });
+            if (filtered.length === 0) { list.innerHTML = "<p style='text-align:center; color:#888; padding:20px;'>記録がありません</p>"; return; }
+            filtered.forEach(x => {
+                const li = document.createElement("li"); li.style.borderLeft = x.defeated ? "4px solid var(--hp-green)" : "4px solid var(--accent-red)";
+                li.innerHTML = '<div class="monster-info"><span class="monster-name">' + x.food + '</span><span class="date">登録日: ' + x.createdAt + ' - ' + (x.defeated ? "討伐済み" : "未討伐") + '</span></div>';
+                list.appendChild(li);
             });
         }
-
-        // Battle Logic
-        function startBattleFlow() {
-            const undefeated = getMonsters().filter(m => !m.defeated);
-            if (undefeated.length === 0) {
-                showScreen('victory-screen');
-                return;
-            }
-
-            playerHP = 100;
-            enemyAttackCount = 0;
-            currentMonster = undefeated[0];
-            setupMonster();
-            showScreen('battle-screen');
-            startEnemyAutoAttack();
+        function startBattleFlow() { const m = getMonsters().find(x => !x.defeated); if (!m) { showScreen("victory-screen"); return; } currentMonster = m; playerHP = 100; enemyHP = 50; setupBattle(); showScreen("battle-screen"); startEnemyAttack(); }
+        function setupBattle() { document.getElementById("battle-monster-name").textContent = currentMonster.food; updateUI(); }
+        function updateUI() {
+            document.getElementById("player-hp-bar").style.width = playerHP + "%"; document.getElementById("player-hp-text").textContent = playerHP + "/100";
+            document.getElementById("player-hp-bar").classList.toggle("low", playerHP <= 30);
+            document.getElementById("enemy-hp-bar").style.width = (enemyHP/50*100) + "%"; document.getElementById("enemy-hp-text").textContent = enemyHP + "/50";
+            document.getElementById("enemy-hp-bar").classList.toggle("low", enemyHP <= 15);
         }
+        function playerAttack() { if (enemyHP <= 0 || playerHP <= 0) return; enemyHP = Math.max(0, enemyHP - 5); updateUI(); const s = document.getElementById("enemy-sprite"); s.classList.add("shake"); setTimeout(() => s.classList.remove("shake"), 200); if (enemyHP <= 0) monsterDefeated(); }
+        function startEnemyAttack() { clearInterval(battleInterval); battleInterval = setInterval(() => { if (playerHP > 0 && enemyHP > 0) { playerHP = Math.max(0, playerHP - 10); updateUI(); if (playerHP <= 0) { clearInterval(battleInterval); showScreen("gameover-screen"); } } }, 1000); }
+        function monsterDefeated() { const m = getMonsters(); const i = m.findIndex(x => x.id === currentMonster.id); m[i].defeated = true; saveMonsters(m); renderMonsters(); setTimeout(startBattleFlow, 1000); }
 
-        function setupMonster() {
-            enemyHP = 50;
-            battleMonsterName.textContent = currentMonster.food;
-            updateHPUI();
-        }
+        document.getElementById("food-form").addEventListener("submit", e => { e.preventDefault(); const val = document.getElementById("food-input").value.trim(); if(val) { addMonster(val); document.getElementById("food-input").value = ""; } });
+        document.getElementById("go-battle-btn").addEventListener("click", startBattleFlow);
+        document.getElementById("microbit-connect-btn").addEventListener("click", connectMicrobit);
+        document.getElementById("retry-btn").addEventListener("click", startBattleFlow);
+        document.getElementById("back-input-btn-go").addEventListener("click", () => showScreen("input-screen"));
+        document.getElementById("back-input-btn-vic").addEventListener("click", () => { showScreen("input-screen"); renderMonsters(); });
+        document.getElementById("go-encyclopedia-btn").addEventListener("click", () => { showScreen("encyclopedia-screen"); renderEncyclopedia(); });
+        document.getElementById("back-from-encyclopedia-btn").addEventListener("click", () => { showScreen("input-screen"); renderMonsters(); });
+        
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active"); currentFilter = btn.dataset.filter; renderEncyclopedia();
+            });
+        });
 
-        function updateHPUI() {
-            playerHPBar.style.width = `${playerHP}%`;
-            playerHPText.textContent = `${playerHP}/100`;
-            playerHPBar.classList.toggle('low', playerHP <= 30);
-
-            const enemyPercent = (enemyHP / 50) * 100;
-            enemyHPBar.style.width = `${enemyPercent}%`;
-            enemyHPText.textContent = `${enemyHP}/50`;
-            enemyHPBar.classList.toggle('low', enemyHP <= 15);
-        }
-
-        function playerAttack() {
-            if (enemyHP <= 0 || playerHP <= 0) return;
-            enemyHP = Math.max(0, enemyHP - 2);
-            updateHPUI();
-            enemySprite.classList.add('shake');
-            setTimeout(() => enemySprite.classList.remove('shake'), 200);
-            if (enemyHP <= 0) monsterDefeated();
-        }
-
-        function startEnemyAutoAttack() {
-            clearInterval(battleInterval);
-            battleInterval = setInterval(() => {
-                if (playerHP > 0 && enemyHP > 0) {
-                    enemyAttackCount++;
-                    const damage = (enemyAttackCount % 3 === 0) ? 25 : 10;
-                    playerHP = Math.max(0, playerHP - damage);
-                    updateHPUI();
-                    if (playerHP <= 0) {
-                        clearInterval(battleInterval);
-                        showScreen('gameover-screen');
-                    }
-                }
-            }, 1000);
-        }
-
-        function monsterDefeated() {
-            const monsters = getMonsters();
-            const index = monsters.findIndex(m => m.id === currentMonster.id);
-            if (index !== -1) {
-                monsters[index].defeated = true;
-                saveMonsters(monsters);
-            }
-            const undefeated = monsters.filter(m => !m.defeated);
-            if (undefeated.length > 0) {
-                currentMonster = undefeated[0];
-                setupMonster();
-            } else {
-                clearInterval(battleInterval);
-                showScreen('victory-screen');
-            }
-        }
+        renderMonsters();
     </script>
-</body>
-</html>
+</body></html>
